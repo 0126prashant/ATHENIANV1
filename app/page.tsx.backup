@@ -766,8 +766,6 @@ export default function AthenianTechWebsite() {
 
       {/* Hero Section */}
       <section ref={heroRef} id="home" className="pt-16 min-h-screen flex items-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 parallax-slow"></div>
-        
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
           <video 
@@ -781,37 +779,66 @@ export default function AthenianTechWebsite() {
             <source src="https://kanishkgaur.com/wp-content/uploads/2025/02/atheniantech.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <div className="absolute inset-0 bg-slate-900/70"></div>
+          <div className="absolute inset-0 bg-slate-900/80"></div>
         </div>
         
-        {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Cybersecurity Visual Elements */}
+        <div className="absolute inset-0 pointer-events-none z-1">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 border border-cyan-500/20 rounded-full animate-pulse"></div>
+          <div className="absolute top-1/3 right-1/4 w-32 h-32 border border-purple-500/20 rounded-full animate-pulse delay-300"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-48 h-48 border border-blue-500/20 rounded-full animate-pulse delay-700"></div>
+          
+          {/* Cyber security grid pattern */}
+          <div className="absolute inset-0 bg-[url('https://www.shutterstock.com/image-vector/vector-hexagonal-pattern-futuristic-hud-600w-1905926389.jpg')] bg-repeat opacity-10"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <div className="mb-8">
+              <div className="inline-block mb-4 py-1 px-3 bg-cyan-500/20 backdrop-blur-sm rounded-full">
+                <span className="text-xs font-medium text-cyan-300">ADVANCED CYBERSECURITY SOLUTIONS</span>
+              </div>
               <h1
                 ref={heroTitleRef}
-                className="text-6xl md:text-8xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent"
+                className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent tracking-tight"
               >
                 {scrambledText}
               </h1>
-              <p ref={heroSubtitleRef} className="text-xl md:text-2xl text-slate-400 mb-8 max-w-4xl mx-auto">
-                Digital Risk Management Company providing AI & ML powered technology solutions to protect Digital
-                Identity for businesses
-              </p>
+              
+              {/* The description appears on scroll */}
+              <div className="h-20 overflow-hidden relative">
+                <p ref={heroSubtitleRef} className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto transform transition-all duration-700 opacity-0 translate-y-8 animate-fade-in-up">
+                  Safeguarding your digital future with next-generation cybersecurity
+                </p>
+              </div>
             </div>
-             <div ref={heroButtonsRef} className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 magnetic">
-                Get Protected Now
+            <div ref={heroButtonsRef} className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 magnetic group transition-all duration-300">
+                <span className="inline-flex items-center gap-2">
+                  <Shield className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" /> 
+                  Get Protected Now
+                </span>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 px-8 py-3 magnetic"
+                className="border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 px-8 py-3 magnetic group transition-all duration-300"
               >
-                Schedule Demo
+                <span className="inline-flex items-center gap-2">
+                  <Eye className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                  Schedule Demo
+                </span>
               </Button>
-            </div> 
+            </div>
           </div>
-        </div> */}
+        </div>
+        
+        {/* Scroll indicator */}
+        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+          <div className="w-8 h-14 rounded-full border-2 border-cyan-400/50 flex justify-center pt-2">
+            <div className="w-1.5 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
+          </div>
+        </div>
       </section>
 
       {/* About Section */}
@@ -906,15 +933,66 @@ export default function AthenianTechWebsite() {
         </div>
       </section>
       
-      <section ref={riskIntelRef} id="risk-intel" className={`py-20 ${isDark ? "bg-slate-900" : "bg-white"} relative`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">About Athenian Tech</h2>
-            <p className="text-xl text-slate-400 max-w-4xl mx-auto">
-              Athenian Tech offers 360 degree protection against advanced digital and cyber threats. Our platforms focus
-              on protecting businesses from identity thefts, frauds, social engineering attacks, APT, ransomware
-              attacks, cryptojacking emerging threat vectors from Dark, Deep, Surface Web.
-            </p>
+      <section ref={riskIntelRef} id="risk-intel" className={`py-24 ${isDark ? "bg-slate-900" : "bg-white"} relative`}>
+        {/* Cybersecurity background elements */}
+        <div className="absolute inset-0 overflow-hidden opacity-10 pointer-events-none">
+          <div className="absolute -right-10 top-10">
+            <img src="https://www.shutterstock.com/shutterstock/photos/1234274554/display_1500/stock-vector-binary-code-background-digital-binary-data-and-streaming-digital-code-background-matrix-1234274554.jpg" className="w-96 h-96 object-cover" alt="" />
+          </div>
+          <div className="absolute -left-10 bottom-10">
+            <img src="https://www.shutterstock.com/shutterstock/photos/1174405250/display_1500/stock-vector-network-connection-structure-big-data-visualization-digital-business-global-network-connections-1174405250.jpg" className="w-96 h-96 object-cover" alt="" />
+          </div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-12 mb-16">
+            <div className="md:w-1/2">
+              <div className="inline-block mb-4 py-1 px-3 bg-cyan-500/20 backdrop-blur-sm rounded-full">
+                <span className="text-xs font-medium text-cyan-300">ABOUT US</span>
+              </div>
+              <h2 className="text-4xl font-bold mb-6">Securing The Digital <span className="text-cyan-400">Frontier</span></h2>
+              <p className="text-xl text-slate-400 mb-6">
+                Athenian Tech offers 360° protection against advanced digital and cyber threats. Our cutting-edge platforms focus
+                on safeguarding businesses from sophisticated attacks.
+              </p>
+              <p className="text-slate-400 mb-6">
+                <span className="font-bold text-cyan-400">Digital Risk Management Company</span> providing AI & ML powered technology solutions to protect Digital
+                Identity for businesses from identity thefts, frauds, social engineering attacks, APT, ransomware
+                attacks, and cryptojacking emerging from Dark, Deep, and Surface Web.
+              </p>
+              <div className="flex gap-4 mt-8">
+                <div className="flex items-center gap-2">
+                  <Shield className="text-cyan-400 h-5 w-5" />
+                  <span>Threat Protection</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Database className="text-cyan-400 h-5 w-5" />
+                  <span>Data Security</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Zap className="text-cyan-400 h-5 w-5" />
+                  <span>Rapid Response</span>
+                </div>
+              </div>
+            </div>
+            <div className="md:w-1/2 relative">
+              <div className="aspect-video rounded-xl overflow-hidden shadow-2xl shadow-cyan-500/20 relative group">
+                <img 
+                  src="https://www.shutterstock.com/shutterstock/photos/1595135434/display_1500/stock-photo-technology-security-concept-digital-cyber-security-computer-safety-on-a-digital-background-with-1595135434.jpg" 
+                  alt="Cyber Security Operations Center" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-70"></div>
+                <div className="absolute bottom-0 left-0 p-6">
+                  <h3 className="text-white text-xl font-bold mb-2">State-of-the-Art Security Operations</h3>
+                  <p className="text-slate-300">24/7 monitoring and response capabilities</p>
+                </div>
+              </div>
+              <div className="absolute -top-4 -right-4 bg-cyan-500 text-white p-4 rounded-lg shadow-lg">
+                <div className="text-3xl font-bold">15+</div>
+                <div className="text-sm">Years Experience</div>
+              </div>
+            </div>
           </div>
 
           {/* Leadership Team with Scroll Animation */}
@@ -1019,77 +1097,106 @@ export default function AthenianTechWebsite() {
               </Card>
             ))}
           </div>
+          
+          {/* Stats section */}
+          <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
+            <div className={`text-center p-6 rounded-xl backdrop-blur-sm ${isDark ? 'bg-slate-800/80' : 'bg-white/90'} border border-slate-700/10`}>
+              <div className="text-4xl md:text-5xl font-bold text-cyan-400 mb-2">99.9%</div>
+              <p className="text-slate-400">Threat Detection Rate</p>
+            </div>
+            <div className={`text-center p-6 rounded-xl backdrop-blur-sm ${isDark ? 'bg-slate-800/80' : 'bg-white/90'} border border-slate-700/10`}>
+              <div className="text-4xl md:text-5xl font-bold text-cyan-400 mb-2">15min</div>
+              <p className="text-slate-400">Average Response Time</p>
+            </div>
+            <div className={`text-center p-6 rounded-xl backdrop-blur-sm ${isDark ? 'bg-slate-800/80' : 'bg-white/90'} border border-slate-700/10`}>
+              <div className="text-4xl md:text-5xl font-bold text-cyan-400 mb-2">500+</div>
+              <p className="text-slate-400">Enterprise Clients</p>
+            </div>
+            <div className={`text-center p-6 rounded-xl backdrop-blur-sm ${isDark ? 'bg-slate-800/80' : 'bg-white/90'} border border-slate-700/10`}>
+              <div className="text-4xl md:text-5xl font-bold text-cyan-400 mb-2">24/7</div>
+              <p className="text-slate-400">Monitoring & Support</p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section
-        ref={servicesRef}
-        id="services"
-        className={`py-20 ${isDark ? "bg-slate-800/50" : "bg-slate-50"} relative`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section ref={servicesRef} id="services" className={`py-24 ${isDark ? "bg-slate-800/50" : "bg-slate-50"} relative overflow-hidden`}>
+        {/* Abstract cybersecurity background elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+          
+          {/* Grid lines */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-cyan-500 to-transparent"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-cyan-500 to-transparent"></div>
+          </div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Our Services</h2>
+            <div className="inline-block mb-4 py-1 px-3 bg-cyan-500/20 backdrop-blur-sm rounded-full">
+              <span className="text-xs font-medium text-cyan-300">OUR SERVICES</span>
+            </div>
+            <h2 className="text-4xl font-bold mb-4">Advanced <span className="text-cyan-400">Protection</span> Services</h2>
             <p className="text-xl text-slate-400 max-w-3xl mx-auto">
-              Expert digital risk management services to protect, monitor, and respond to threats.
+              Enterprise-grade cybersecurity solutions powered by AI to protect your organization from sophisticated digital threats
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className={`p-6 rounded-lg ${isDark ? "bg-slate-800 hover:bg-slate-700" : "bg-white hover:bg-slate-50"} transition-all duration-300 group cursor-pointer service-card magnetic`}
-              >
-                <service.icon className="h-12 w-12 text-cyan-400 mb-4 service-icon" />
-                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                <p className="text-slate-400">{service.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Research & Analysis Section */}
-      <section ref={researchRef} id="research" className="py-20 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Cyber Research & Analysis</h2>
-            <p className="text-xl text-slate-400 max-w-3xl mx-auto">
-              Our Risk Intelligence Reports - Latest threat analysis and cybersecurity research.
+          <div className="grid md:grid-cols-3 gap-8">
+            {services.map((service, index) => {
+              const Icon = service.icon
+              return (
+                <div 
+                  key={index} 
+                  className={`${
+                    isDark ? "bg-slate-800/80" : "bg-white/90"
+                  } group p-1 rounded-2xl backdrop-blur-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 service-card animate-card relative`}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-transparent to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative p-8 z-10">
+                    <div className="service-icon mb-6 p-4 rounded-xl bg-gradient-to-br from-cyan-500/10 to-purple-500/10 w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Icon className="h-8 w-8 text-cyan-400" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-3 group-hover:text-cyan-400 transition-colors duration-300">{service.title}</h3>
+                    <p className="text-slate-400 mb-6">{service.description}</p>
+                    <div className="flex items-center text-cyan-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+                      <span className="mr-2">Learn more</span>
+                      <ChevronDown className="h-4 w-4 -rotate-90" />
+                    </div>
+                    
+                    {/* Service-specific security icon watermark */}
+                    <div className="absolute bottom-2 right-2 opacity-5">
+                      <Icon className="h-20 w-20" />
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {researchReports.map((report, index) => (
-              <Card
+              <div
                 key={index}
-                className={`${isDark ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"} research-card magnetic`}
+                className={`${
+                  isDark ? "bg-slate-800/90" : "bg-white/90"
+                } group rounded-2xl overflow-hidden animate-card backdrop-blur-sm hover:shadow-xl hover:shadow-cyan-500/10 transition-all duration-300 border border-slate-700/10`}
               >
-                <div className="relative">
-                  <img
-                    src={report.image || "/placeholder.svg"}
-                    alt={report.title}
-                    className="w-full h-48 object-cover rounded-t-lg"
+                <div className="aspect-video overflow-hidden relative">
+                  <img 
+                    src={`https://source.unsplash.com/random/600x400/?cybersecurity,technology,${index}`} 
+                    alt={report.title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
                   />
-                  <Badge className="absolute top-4 left-4 bg-cyan-500">{report.category}</Badge>
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-bold mb-2 line-clamp-2">{report.title}</h3>
-                  <p className="text-slate-400 text-sm mb-4">{report.date}</p>
-                  <Button size="sm" className="w-full bg-cyan-500 hover:bg-cyan-600 magnetic">
-                    <Download className="h-4 w-4 mr-2" />
-                    Download
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Risk Intelligence Section */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-70"></div>
+                  <Badge className="absolute top-4 left-4 bg-cyan-500/70 text-white backdrop-blur-sm border-0">
+                    {report.category}
       <section
         ref={riskIntelRef}
         id="risk-intelligence"
