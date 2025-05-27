@@ -64,66 +64,81 @@ export default function AthenianTechWebsite() {
   const heroTitleRef = useRef<HTMLHeadingElement>(null)
   const heroSubtitleRef = useRef<HTMLParagraphElement>(null)
   const heroButtonsRef = useRef<HTMLDivElement>(null)
-  const cursorRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const leadershipRef = useRef<HTMLDivElement>(null)
+  const sliderRef = useRef<HTMLDivElement>(null)
+  
+  // State for image slider
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const totalSlides = 5
 
-  // Mouse tracking for interactive cursor
+  // Video autoplay setup
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-
-      if (cursorRef.current) {
-        gsap.to(cursorRef.current, {
-          x: e.clientX - 10,
-          y: e.clientY - 10,
-          duration: 0.1,
-          ease: "power2.out",
-        })
-      }
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.error("Video autoplay failed:", error)
+      })
     }
-
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
   }, [])
 
   // Initialize GSAP animations
+  // Add scroll-based animations for leadership section
+  useEffect(() => {
+    if (leadershipRef.current) {
+      const leftCards = leadershipRef.current.querySelectorAll('[data-scroll-direction="left"]')
+      const rightCards = leadershipRef.current.querySelectorAll('[data-scroll-direction="right"]')
+      
+      gsap.fromTo(leftCards, 
+        { x: -100, opacity: 0 },
+        { 
+          x: 0, 
+          opacity: 1, 
+          duration: 0.8, 
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: leadershipRef.current,
+            start: "top 70%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      )
+      
+      gsap.fromTo(rightCards, 
+        { x: 100, opacity: 0 },
+        { 
+          x: 0, 
+          opacity: 1, 
+          duration: 0.8, 
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: leadershipRef.current,
+            start: "top 70%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      )
+    }
+  }, [])
+  
   useEffect(() => {
     if (typeof window === "undefined") return
 
     const ctx = gsap.context(() => {
-      // Custom cursor
-      if (cursorRef.current) {
-        gsap.set(cursorRef.current, { scale: 0 })
-      }
-
-      // Magnetic effect for interactive elements
+      // Simple hover effect for interactive elements
       const magneticElements = document.querySelectorAll(".magnetic")
       magneticElements.forEach((element) => {
         const handleMouseEnter = () => {
-          gsap.to(cursorRef.current, { scale: 2, duration: 0.3 })
           gsap.to(element, { scale: 1.05, duration: 0.3, ease: "power2.out" })
         }
 
         const handleMouseLeave = () => {
-          gsap.to(cursorRef.current, { scale: 1, duration: 0.3 })
           gsap.to(element, { scale: 1, duration: 0.3, ease: "power2.out" })
-        }
-
-        const handleMouseMove = (e: MouseEvent) => {
-          const rect = (element as HTMLElement).getBoundingClientRect()
-          const x = e.clientX - rect.left - rect.width / 2
-          const y = e.clientY - rect.top - rect.height / 2
-
-          gsap.to(element, {
-            x: x * 0.1,
-            y: y * 0.1,
-            duration: 0.3,
-            ease: "power2.out",
-          })
         }
 
         element.addEventListener("mouseenter", handleMouseEnter)
         element.addEventListener("mouseleave", handleMouseLeave)
-        element.addEventListener("mousemove", handleMouseMove)
       })
 
       // Floating background elements with interactive behavior
@@ -243,23 +258,19 @@ export default function AthenianTechWebsite() {
 
       sections.forEach((sectionRef, index) => {
         if (sectionRef.current) {
-          // Section title with 3D effect
+          // Section title with simple fade-in effect
           const title = sectionRef.current.querySelector("h2")
           if (title) {
             gsap.fromTo(
               title,
               {
                 opacity: 0,
-                y: 100,
-                rotationX: -45,
-                scale: 0.8,
+                y: 30,
               },
               {
                 opacity: 1,
                 y: 0,
-                rotationX: 0,
-                scale: 1,
-                duration: 1.2,
+                duration: 0.8,
                 ease: "power2.out",
                 scrollTrigger: {
                   trigger: title,
@@ -271,7 +282,7 @@ export default function AthenianTechWebsite() {
             )
           }
 
-          // Enhanced card animations
+          // Simplified card animations
           const cards = sectionRef.current.querySelectorAll(".animate-card")
           if (cards.length > 0) {
             cards.forEach((card, cardIndex) => {
@@ -279,16 +290,12 @@ export default function AthenianTechWebsite() {
                 card,
                 {
                   opacity: 0,
-                  y: 80,
-                  scale: 0.7,
-                  rotationY: cardIndex % 2 === 0 ? -25 : 25,
+                  y: 40,
                 },
                 {
                   opacity: 1,
                   y: 0,
-                  scale: 1,
-                  rotationY: 0,
-                  duration: 1,
+                  duration: 0.7,
                   delay: cardIndex * 0.1,
                   ease: "power2.out",
                   scrollTrigger: {
@@ -666,12 +673,7 @@ export default function AthenianTechWebsite() {
     <div
       className={`min-h-screen transition-colors duration-300 ${isDark ? "dark bg-slate-900 text-white" : "bg-white text-slate-900"} relative overflow-x-hidden`}
     >
-      {/* Custom Cursor */}
-      <div
-        ref={cursorRef}
-        className="fixed w-5 h-5 bg-cyan-400 rounded-full pointer-events-none z-50 mix-blend-difference"
-        style={{ transform: "translate(-50%, -50%)" }}
-      />
+      {/* No custom cursor */}
 
       {/* Floating Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -765,6 +767,23 @@ export default function AthenianTechWebsite() {
       {/* Hero Section */}
       <section ref={heroRef} id="home" className="pt-16 min-h-screen flex items-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 parallax-slow"></div>
+        
+        {/* Video Background */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+          <video 
+            ref={videoRef}
+            className="absolute min-w-full min-h-full object-cover"
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+          >
+            <source src="https://kanishkgaur.com/wp-content/uploads/2025/02/atheniantech.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="absolute inset-0 bg-slate-900/70"></div>
+        </div>
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <div className="mb-8">
@@ -796,7 +815,98 @@ export default function AthenianTechWebsite() {
       </section>
 
       {/* About Section */}
-      <section ref={aboutRef} id="about" className={`py-20 ${isDark ? "bg-slate-800/50" : "bg-slate-50"} relative`}>
+      {/* Image Swipe Gallery */}
+      <section className={`py-20 ${isDark ? "bg-slate-800/50" : "bg-slate-50"} relative overflow-hidden`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold mb-12 text-center">Our Cybersecurity Approach</h2>
+          
+          <div className="relative" ref={sliderRef}>
+            <div className="flex overflow-x-hidden relative">
+              <div 
+                className="flex transition-transform duration-500 ease-in-out" 
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                <div className="min-w-full px-4">
+                  <img 
+                    src="https://source.unsplash.com/random/1200x600/?cybersecurity,technology" 
+                    alt="Cybersecurity" 
+                    className="rounded-lg w-full h-[400px] object-cover" 
+                  />
+                  <h3 className="text-xl font-semibold mt-4 mb-2">Advanced Threat Protection</h3>
+                  <p className="text-slate-400">Proactive defense against the most sophisticated cyber threats</p>
+                </div>
+                <div className="min-w-full px-4">
+                  <img 
+                    src="https://source.unsplash.com/random/1200x600/?data,security" 
+                    alt="Data Security" 
+                    className="rounded-lg w-full h-[400px] object-cover" 
+                  />
+                  <h3 className="text-xl font-semibold mt-4 mb-2">Data Protection</h3>
+                  <p className="text-slate-400">Comprehensive security for sensitive data across all systems</p>
+                </div>
+                <div className="min-w-full px-4">
+                  <img 
+                    src="https://source.unsplash.com/random/1200x600/?network,protection" 
+                    alt="Network Protection" 
+                    className="rounded-lg w-full h-[400px] object-cover" 
+                  />
+                  <h3 className="text-xl font-semibold mt-4 mb-2">Network Security</h3>
+                  <p className="text-slate-400">Securing communication channels against unauthorized access</p>
+                </div>
+                <div className="min-w-full px-4">
+                  <img 
+                    src="https://source.unsplash.com/random/1200x600/?ai,machine-learning" 
+                    alt="AI Security" 
+                    className="rounded-lg w-full h-[400px] object-cover" 
+                  />
+                  <h3 className="text-xl font-semibold mt-4 mb-2">AI-Powered Analytics</h3>
+                  <p className="text-slate-400">Intelligent threat detection using advanced machine learning</p>
+                </div>
+                <div className="min-w-full px-4">
+                  <img 
+                    src="https://source.unsplash.com/random/1200x600/?cloud,computing" 
+                    alt="Cloud Security" 
+                    className="rounded-lg w-full h-[400px] object-cover" 
+                  />
+                  <h3 className="text-xl font-semibold mt-4 mb-2">Cloud Security</h3>
+                  <p className="text-slate-400">Protecting cloud environments and applications from threats</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex justify-between absolute top-1/2 transform -translate-y-1/2 left-0 right-0 px-4">
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="rounded-full bg-white/80 hover:bg-white" 
+                onClick={() => setCurrentSlide(prev => (prev === 0 ? totalSlides - 1 : prev - 1))}
+              >
+                <ChevronDown className="h-6 w-6 rotate-90" />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="rounded-full bg-white/80 hover:bg-white" 
+                onClick={() => setCurrentSlide(prev => (prev === totalSlides - 1 ? 0 : prev + 1))}
+              >
+                <ChevronDown className="h-6 w-6 -rotate-90" />
+              </Button>
+            </div>
+            
+            <div className="flex justify-center mt-4 gap-2">
+              {Array.from({ length: totalSlides }).map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-3 h-3 rounded-full ${currentSlide === index ? 'bg-cyan-500' : 'bg-slate-400'}`}
+                  onClick={() => setCurrentSlide(index)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section ref={riskIntelRef} id="risk-intel" className={`py-20 ${isDark ? "bg-slate-900" : "bg-white"} relative`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">About Athenian Tech</h2>
@@ -807,19 +917,20 @@ export default function AthenianTechWebsite() {
             </p>
           </div>
 
-          {/* Leadership Team */}
-          <div className="mb-16">
+          {/* Leadership Team with Scroll Animation */}
+          <div className="mb-16" ref={leadershipRef}>
             <h3 className="text-3xl font-bold text-center mb-12">Our Leadership</h3>
             <div className="grid md:grid-cols-2 gap-12">
               {teamMembers.map((member, index) => (
                 <Card
                   key={index}
                   className={`${isDark ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"} animate-card magnetic`}
+                  data-scroll-direction={index % 2 === 0 ? "left" : "right"}
                 >
                   <CardContent className="p-8">
                     <div className="flex flex-col md:flex-row gap-6">
                       <img
-                        src={member.image || "/placeholder.svg"}
+                        src={`https://source.unsplash.com/random/200x200/?executive,professional,${index}`}
                         alt={member.name}
                         className="w-32 h-32 rounded-lg object-cover mx-auto md:mx-0"
                       />
