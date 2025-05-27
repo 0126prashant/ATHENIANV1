@@ -30,7 +30,13 @@ import {
   Brain,
   Users,
   Target,
+  Lock,
+  RefreshCw,
+  ChevronLeft,
+  ChevronRight,
+  Info,
 } from "lucide-react"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog"
 
 // GSAP imports
 import { gsap } from "gsap"
@@ -67,10 +73,14 @@ export default function AthenianTechWebsite() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const leadershipRef = useRef<HTMLDivElement>(null)
   const sliderRef = useRef<HTMLDivElement>(null)
-  
+  const dialogRef = useRef<HTMLDivElement>(null)
+
   // State for image slider
   const [currentSlide, setCurrentSlide] = useState(0)
   const totalSlides = 5
+
+  // State for the popup dialog
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   // Video autoplay setup
   useEffect(() => {
@@ -1315,6 +1325,78 @@ export default function AthenianTechWebsite() {
           </div>
         </div>
       </section>
+
+      {/* Floating Info Button with Dialog */}
+      <div className="fixed bottom-8 right-8 z-50">
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button
+              size="lg"
+              className="rounded-full h-14 w-14 bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 shadow-lg"
+            >
+              <Info className="h-6 w-6 text-white" />
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[900px] bg-black/90 border-cyan-500/50">
+            <DialogHeader>
+              <DialogTitle className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                About Athenian Tech
+              </DialogTitle>
+              <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                <X className="h-4 w-4" />
+                <span className="sr-only">Close</span>
+              </DialogClose>
+            </DialogHeader>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+              <div>
+                <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                  Secure Your Digital Future
+                </h2>
+                <p className="text-xl text-slate-400 mb-6">
+                  Digital Risk Management Company providing AI & ML powered technology solutions to protect Digital
+                  Identity for businesses
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button size="lg" className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3">
+                    Get Protected Now
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 px-8 py-3"
+                  >
+                    Schedule Demo
+                  </Button>
+                </div>
+              </div>
+              <div className="rounded-lg overflow-hidden h-[300px]">
+                <img
+                  src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                  alt="Cybersecurity"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+              <img
+                src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                alt="Data Security"
+                className="rounded-lg h-[150px] object-cover"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1633265486064-086b219458ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                alt="Network Security"
+                className="rounded-lg h-[150px] object-cover"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1535191042502-e6a9a3d407e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                alt="AI Security"
+                className="rounded-lg h-[150px] object-cover"
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
+      </div>
 
       {/* Footer */}
       <footer
