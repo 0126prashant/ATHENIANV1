@@ -838,7 +838,7 @@ export default function AthenianTechWebsite() {
               >
                 <div className="min-w-full px-4">
                   <img 
-                    src="https://source.unsplash.com/random/1200x600/?cybersecurity,technology" 
+                    src="https://images.unsplash.com/photo-1603985529862-9e12198c9a60?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGN5YmVyJTIwc2VjdXJpdHl8ZW58MHx8MHx8fDA%3D" 
                     alt="Cybersecurity" 
                     className="rounded-lg w-full h-[400px] object-cover" 
                   />
@@ -847,7 +847,7 @@ export default function AthenianTechWebsite() {
                 </div>
                 <div className="min-w-full px-4">
                   <img 
-                    src="https://source.unsplash.com/random/1200x600/?data,security" 
+                    src="https://images.unsplash.com/photo-1618060932014-4deda4932554?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y3liZXIlMjBzZWN1cml0eXxlbnwwfHwwfHx8MA%3D%3D" 
                     alt="Data Security" 
                     className="rounded-lg w-full h-[400px] object-cover" 
                   />
@@ -856,7 +856,7 @@ export default function AthenianTechWebsite() {
                 </div>
                 <div className="min-w-full px-4">
                   <img 
-                    src="https://source.unsplash.com/random/1200x600/?network,protection" 
+                    src="https://plus.unsplash.com/premium_photo-1676618539992-21c7d3b6df0f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGN5YmVyJTIwc2VjdXJpdHl8ZW58MHx8MHx8fDA%3D" 
                     alt="Network Protection" 
                     className="rounded-lg w-full h-[400px] object-cover" 
                   />
@@ -865,7 +865,7 @@ export default function AthenianTechWebsite() {
                 </div>
                 <div className="min-w-full px-4">
                   <img 
-                    src="https://source.unsplash.com/random/1200x600/?ai,machine-learning" 
+                    src="https://images.unsplash.com/photo-1632910121591-29e2484c0259?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGN5YmVyJTIwc2VjdXJpdHl8ZW58MHx8MHx8fDA%3D" 
                     alt="AI Security" 
                     className="rounded-lg w-full h-[400px] object-cover" 
                   />
@@ -874,7 +874,7 @@ export default function AthenianTechWebsite() {
                 </div>
                 <div className="min-w-full px-4">
                   <img 
-                    src="https://source.unsplash.com/random/1200x600/?cloud,computing" 
+                    src="https://images.unsplash.com/photo-1624969862644-791f3dc98927?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGN5YmVyJTIwc2VjdXJpdHl8ZW58MHx8MHx8fDA%3D" 
                     alt="Cloud Security" 
                     className="rounded-lg w-full h-[400px] object-cover" 
                   />
@@ -940,7 +940,7 @@ export default function AthenianTechWebsite() {
                   <CardContent className="p-8">
                     <div className="flex flex-col md:flex-row gap-6">
                       <img
-                        src={`https://source.unsplash.com/random/200x200/?executive,professional,${index}`}
+                        src={`https://images.unsplash.com/photo-1616851273103-5f0ec44e546f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aHVtYW4lMjBwcm9mZXNzaW9uYWx8ZW58MHx8MHx8fDA%3D,${index}`}
                         alt={member.name}
                         className="w-32 h-32 rounded-lg object-cover mx-auto md:mx-0"
                       />
@@ -969,7 +969,8 @@ export default function AthenianTechWebsite() {
                   <CardContent className="p-8">
                     <div className="flex flex-col md:flex-row gap-6">
                       <img
-                        src={advisor.image || "/placeholder.svg"}
+                        // src={advisor.image || "https://images.unsplash.com/photo-1616851273103-5f0ec44e546f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aHVtYW4lMjBwcm9mZXNzaW9uYWx8ZW58MHx8MHx8fDA%3D"}
+                        src="https://images.unsplash.com/photo-1616851273103-5f0ec44e546f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aHVtYW4lMjBwcm9mZXNzaW9uYWx8ZW58MHx8MHx8fDA%3D"
                         alt={advisor.name}
                         className="w-32 h-32 rounded-lg object-cover mx-auto md:mx-0"
                       />
@@ -1079,7 +1080,8 @@ export default function AthenianTechWebsite() {
               >
                 <div className="relative">
                   <img
-                    src={report.image || "/placeholder.svg"}
+                    // src={report.image || "/placeholder.svg"}
+                    src="https://media.istockphoto.com/id/2151295139/photo/professional-online-gamer-hand-fingers.webp?a=1&b=1&s=612x612&w=0&k=20&c=nAUdTdR6ziYnwBciABQvbzgt2U_AgTRx1XJbh2HtbE8="
                     alt={report.title}
                     className="w-full h-48 object-cover rounded-t-lg"
                   />
